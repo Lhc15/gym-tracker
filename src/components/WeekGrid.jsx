@@ -29,14 +29,14 @@ export default function WeekGrid() {
         if (status === 'green') {
           bg = 'var(--green)'
           border = 'var(--green)'
-          textColor = '#000'
+          textColor = '#fff'
         } else if (status === 'red') {
           bg = 'var(--red)'
           border = 'var(--red)'
-          textColor = '#000'
+          textColor = '#fff'
         } else if (isCurrent && status === 'pending') {
-          border = 'var(--accent-a)'
-          textColor = 'var(--accent-a)'
+          border = '#111'
+          textColor = '#111'
         }
 
         return (
@@ -56,7 +56,7 @@ export default function WeekGrid() {
               color: isFuture ? 'var(--text-muted)' : textColor,
               fontFamily: 'var(--font-mono)',
               transition: 'all 0.3s ease',
-              boxShadow: isCurrent ? '0 0 0 2px rgba(232,255,71,0.2)' : 'none',
+              boxShadow: isCurrent ? '0 0 0 2px rgba(0,0,0,0.2)' : 'none',
               opacity: isFuture ? 0.4 : 1,
             }}
           >

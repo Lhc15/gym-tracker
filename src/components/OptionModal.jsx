@@ -111,7 +111,7 @@ export default function OptionModal({ option, onClose }) {
               background: 'var(--surface2)',
               borderRadius: 'var(--radius-sm)',
               padding: '12px 14px',
-              borderLeft: '3px solid var(--accent-a)',
+              borderLeft: '3px solid #111',
             }}>
               <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--text)' }}>
                 {option.note}

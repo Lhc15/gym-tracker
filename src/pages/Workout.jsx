@@ -208,7 +208,7 @@ export default function Workout() {
             style={{
               position: 'fixed',
               inset: 0,
-              background: 'rgba(0,0,0,0.9)',
+              background: 'rgba(240,240,235,0.97)',
               zIndex: 200,
               display: 'flex',
               flexDirection: 'column',
@@ -233,7 +233,7 @@ export default function Workout() {
               }}>
                 DÍA {routineKey}
               </div>
-              <p style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>
+              <p style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, color: 'var(--text)' }}>
                 ¡Sesión completada!
               </p>
               <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 13, marginBottom: 40 }}>

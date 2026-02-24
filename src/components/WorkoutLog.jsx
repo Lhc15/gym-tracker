@@ -84,8 +84,8 @@ export default function WorkoutLog({ exerciseId, sets, reps, accentColor }) {
           {suggested && (
             <div style={{
               padding: '10px 12px',
-              background: 'rgba(232,255,71,0.06)',
-              border: '1px solid rgba(232,255,71,0.2)',
+              background: 'rgba(150,200,0,0.1)',
+              border: '1px solid rgba(100,150,0,0.2)',
               borderRadius: 8,
               margin: '12px 0',
               display: 'flex',
@@ -93,7 +93,7 @@ export default function WorkoutLog({ exerciseId, sets, reps, accentColor }) {
               justifyContent: 'space-between',
             }}>
               <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Peso sugerido</span>
-              <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent-a)', fontWeight: 700 }}>
+              <span style={{ fontFamily: 'var(--font-mono)', color: '#4a7000', fontWeight: 700 }}>
                 {suggested} kg
               </span>
             </div>

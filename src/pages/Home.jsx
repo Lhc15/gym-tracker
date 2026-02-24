@@ -43,6 +43,7 @@ export default function Home() {
             fontWeight: 800,
             letterSpacing: '-0.03em',
             lineHeight: 1.05,
+            color: 'var(--text)',
           }}>
             GYM<br />TRACKER
           </h1>
@@ -79,9 +80,9 @@ export default function Home() {
                   width: '100%',
                   padding: '20px',
                   background: isNext ? routine.color : 'var(--surface)',
-                  border: isNext ? 'none' : '1px solid var(--border)',
+                  border: isNext ? '2px solid transparent' : '1.5px solid var(--border)',
                   borderRadius: 'var(--radius)',
-                  color: isNext ? '#000' : 'var(--text)',
+                  color: '#111',
                   textAlign: 'left',
                   position: 'relative',
                   overflow: 'hidden',

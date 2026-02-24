@@ -19,7 +19,7 @@
 export const ROUTINES = {
   A: {
     name: 'DÍA A',
-    color: '#e8ff47',
+    color: '#c8f020',
     exercises: [
       {
         id: 'a1',
