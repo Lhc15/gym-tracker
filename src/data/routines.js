@@ -16,8 +16,7 @@
 //   ]
 // }
 
-// URLs de imágenes: wger.de (licencia CC-BY-SA, libre para uso personal)
-// Si prefieres tus propias fotos, cambia imageUrl por una URL directa a cualquier imagen
+// URLs de imágenes: Wikimedia Commons (dominio público / CC, URLs verificadas)
 
 export const ROUTINES = {
   A: {
@@ -33,17 +32,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'La opción más segura. Controla la bajada.',
           },
           {
             label: 'Sentadilla en multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/8/Squats-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Squat_-_exercise_demonstration_video.webm/320px--Squat_-_exercise_demonstration_video.webm.jpg',
             note: 'Buena para progresión limpia sin necesitar spotter.',
           },
           {
             label: 'Hack squat',
-            imageUrl: 'https://wger.de/media/exercise-images/220/Hack-squat-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'Muy buena opción si la hay. Excelente para cuádriceps.',
           },
         ],
@@ -57,17 +56,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra libre',
-            imageUrl: 'https://wger.de/media/exercise-images/96/Romanian-deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'Mayor estímulo global. Ideal si controlas el movimiento.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://wger.de/media/exercise-images/243/Dumbbell-Romanian-Deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'Más fácil de colocar. Buena opción cuando el peso sube.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/96/Romanian-deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'Más estabilidad. Válido para empezar a cargar.',
           },
         ],
@@ -81,12 +80,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta agarre ancho',
-            imageUrl: 'https://wger.de/media/exercise-images/59/Lat-pulldown-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Common_Lat_Pulldown_Mistakes.webm/320px--Common_Lat_Pulldown_Mistakes.webm.jpg',
             note: 'Clásico y efectivo. Lleva la barra al pecho.',
           },
           {
             label: 'Polea alta agarre neutro',
-            imageUrl: 'https://wger.de/media/exercise-images/59/Lat-pulldown-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Common_Lat_Pulldown_Mistakes.webm/320px--Common_Lat_Pulldown_Mistakes.webm.jpg',
             note: 'Menos tensión en el hombro. Buena alternativa.',
           },
         ],
@@ -100,17 +99,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina convergente',
-            imageUrl: 'https://wger.de/media/exercise-images/165/Machine-chest-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Bench_press_-_exercise_demonstration_video.webm/320px--Bench_press_-_exercise_demonstration_video.webm.jpg',
             note: 'Ideal para aislar más el pecho. Muy segura.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/15/Bench-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Bench_press_-_exercise_demonstration_video.webm/320px--Bench_press_-_exercise_demonstration_video.webm.jpg',
             note: 'Progresión limpia y controlada.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://wger.de/media/exercise-images/87/Dumbbell-bench-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Bench_press_-_exercise_demonstration_video.webm/320px--Bench_press_-_exercise_demonstration_video.webm.jpg',
             note: 'Mayor rango de movimiento. Requiere más estabilidad.',
           },
         ],
@@ -124,12 +123,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: 'https://wger.de/media/exercise-images/32/Dumbbell-lateral-raise-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/How_To_Properly_Dumbbell_Shoulder_Press.webm/320px--How_To_Properly_Dumbbell_Shoulder_Press.webm.jpg',
             note: 'La opción clásica. Control total en cada rep.',
           },
           {
             label: 'Máquina de hombro lateral',
-            imageUrl: 'https://wger.de/media/exercise-images/32/Dumbbell-lateral-raise-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/How_To_Properly_Dumbbell_Shoulder_Press.webm/320px--How_To_Properly_Dumbbell_Shoulder_Press.webm.jpg',
             note: 'Muy buena si existe. Tensión constante en el deltoides.',
           },
         ],
@@ -150,17 +149,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg/480px-U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg',
             note: 'La opción más cargable. Usa pad para la cadera.',
           },
           {
             label: 'Máquina específica de hip thrust',
-            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg/480px-U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg',
             note: 'La mejor opción si existe. Tensión perfecta en glúteo.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg/480px-U.S._Air_Force_Senior_Airman_Brandon_Stout_deadlifts.jpg',
             note: 'Buena alternativa segura.',
           },
         ],
@@ -174,12 +173,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Remo sentado en polea',
-            imageUrl: 'https://wger.de/media/exercise-images/61/Seated-cable-row-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bent-over_row_-_exercise_demonstration_video.webm/320px--Bent-over_row_-_exercise_demonstration_video.webm.jpg',
             note: 'El clásico. Agarre neutro o ancho.',
           },
           {
             label: 'Remo en máquina con pecho apoyado',
-            imageUrl: 'https://wger.de/media/exercise-images/170/Machine-row-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bent-over_row_-_exercise_demonstration_video.webm/320px--Bent-over_row_-_exercise_demonstration_video.webm.jpg',
             note: 'Muy buena opción. Elimina el balanceo completamente.',
           },
         ],
@@ -193,12 +192,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: 'https://wger.de/media/exercise-images/222/Bulgarian-split-squat-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Squat_-_exercise_demonstration_video.webm/320px--Squat_-_exercise_demonstration_video.webm.jpg',
             note: 'La opción estándar. Flexibilidad de agarre.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/222/Bulgarian-split-squat-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Squat_-_exercise_demonstration_video.webm/320px--Squat_-_exercise_demonstration_video.webm.jpg',
             note: 'Más estabilidad lateral. Buena para cargar más.',
           },
         ],
@@ -212,12 +211,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Curl femoral tumbado',
-            imageUrl: 'https://wger.de/media/exercise-images/219/Lying-leg-curl-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'Mayor rango de movimiento.',
           },
           {
             label: 'Curl femoral sentado',
-            imageUrl: 'https://wger.de/media/exercise-images/217/Seated-leg-curl-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'Tensión en posición de estiramiento. Muy efectivo.',
           },
         ],
@@ -231,7 +230,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta con cuerda',
-            imageUrl: 'https://wger.de/media/exercise-images/232/Face-pull-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Common_Lat_Pulldown_Mistakes.webm/320px--Common_Lat_Pulldown_Mistakes.webm.jpg',
             note: 'La única opción correcta. Tira hacia la cara, codos altos.',
           },
         ],
@@ -252,17 +251,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'El original. Máximo estímulo de cadena posterior.',
           },
           {
             label: 'Trap bar',
-            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'Mejor para ti si la hay. Más segura y cómoda.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Deadlift_-_exercise_demonstration_video.webm/320px--Deadlift_-_exercise_demonstration_video.webm.jpg',
             note: 'Si quieres estabilidad. Válido para aprender.',
           },
         ],
@@ -276,7 +275,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'Footprint alto para más cuádriceps, bajo para más glúteo.',
           },
         ],
@@ -290,17 +289,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina de hombro',
-            imageUrl: 'https://wger.de/media/exercise-images/166/Machine-shoulder-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Shoulder_press_-_exercise_demonstration_video.webm/320px--Shoulder_press_-_exercise_demonstration_video.webm.jpg',
             note: 'La más segura y progresiva.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://wger.de/media/exercise-images/9/Overhead-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Shoulder_press_-_exercise_demonstration_video.webm/320px--Shoulder_press_-_exercise_demonstration_video.webm.jpg',
             note: 'Buena opción. Controla que no arquees la espalda.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://wger.de/media/exercise-images/30/Dumbbell-shoulder-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/How_To_Properly_Dumbbell_Shoulder_Press.webm/320px--How_To_Properly_Dumbbell_Shoulder_Press.webm.jpg',
             note: 'Mayor inestabilidad. Útil para identificar desequilibrios.',
           },
         ],
@@ -314,17 +313,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea baja unilateral',
-            imageUrl: 'https://wger.de/media/exercise-images/61/Seated-cable-row-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bent-over_row_-_exercise_demonstration_video.webm/320px--Bent-over_row_-_exercise_demonstration_video.webm.jpg',
             note: 'Muy buena. Rango completo de movimiento.',
           },
           {
             label: 'Máquina unilateral',
-            imageUrl: 'https://wger.de/media/exercise-images/170/Machine-row-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bent-over_row_-_exercise_demonstration_video.webm/320px--Bent-over_row_-_exercise_demonstration_video.webm.jpg',
             note: 'Si existe, cómoda y progresiva.',
           },
           {
             label: 'Mancuerna apoyada en banco',
-            imageUrl: 'https://wger.de/media/exercise-images/62/Dumbbell-row-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bent-over_row_-_exercise_demonstration_video.webm/320px--Bent-over_row_-_exercise_demonstration_video.webm.jpg',
             note: 'La clásica. Siempre disponible.',
           },
         ],
@@ -338,32 +337,32 @@ export const ROUTINES = {
         options: [
           {
             label: 'Gemelo — Máquina de pie',
-            imageUrl: 'https://wger.de/media/exercise-images/75/Standing-calf-raise-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Squat_-_exercise_demonstration_video.webm/320px--Squat_-_exercise_demonstration_video.webm.jpg',
             note: 'Mayor carga. Rodilla extendida activa más gastrocnemio.',
           },
           {
             label: 'Gemelo — Máquina sentado',
-            imageUrl: 'https://wger.de/media/exercise-images/75/Standing-calf-raise-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Squat_-_exercise_demonstration_video.webm/320px--Squat_-_exercise_demonstration_video.webm.jpg',
             note: 'Rodilla flexionada activa más sóleo.',
           },
           {
             label: 'Gemelo — En prensa',
-            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm/320px--Hip_Sled_-_How_to_perform_a_45_degree_leg_press.webm.jpg',
             note: 'Válido si no hay máquina específica.',
           },
           {
             label: 'Core — Pallof press en polea',
-            imageUrl: 'https://wger.de/media/exercise-images/168/Pallof-press-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Common_Lat_Pulldown_Mistakes.webm/320px--Common_Lat_Pulldown_Mistakes.webm.jpg',
             note: 'Antirotación. El mejor core para el gym.',
           },
           {
-            label: 'Core — Crunch en polea',
-            imageUrl: 'https://wger.de/media/exercise-images/91/Crunches-1.png',
+            label: 'Core — Crunch en poleo',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Hanging_crunches_-_exercise_demonstration_video.webm/320px--Hanging_crunches_-_exercise_demonstration_video.webm.jpg',
             note: 'Con carga. Mucho mejor que crunch en suelo.',
           },
           {
             label: 'Core — Plancha con peso',
-            imageUrl: 'https://wger.de/media/exercise-images/135/Plank-1.png',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Hanging_crunches_-_exercise_demonstration_video.webm/320px--Hanging_crunches_-_exercise_demonstration_video.webm.jpg',
             note: 'Disco en la espalda. 30–45 segundos.',
           },
         ],
