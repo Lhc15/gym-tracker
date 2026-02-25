@@ -1,5 +1,6 @@
 // src/data/routines.js
-// Imágenes: Unsplash (libre, sin restricciones CORS)
+// Imágenes: YouTube thumbnails (máxima calidad, sin restricciones CORS)
+// IDs de vídeos verificados de ejercicios en inglés con buena demostración
 
 export const ROUTINES = {
   A: {
@@ -15,17 +16,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/IZxyjW7MPJQ/hqdefault.jpg',
             note: 'La opción más segura. Controla la bajada.',
           },
           {
             label: 'Sentadilla en multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/ultWZbUMPL8/hqdefault.jpg',
             note: 'Buena para progresión limpia sin necesitar spotter.',
           },
           {
             label: 'Hack squat',
-            imageUrl: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/EdtDBi-FKIY/hqdefault.jpg',
             note: 'Muy buena opción si la hay. Excelente para cuádriceps.',
           },
         ],
@@ -39,17 +40,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra libre',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/JCXUYuzwNrM/hqdefault.jpg',
             note: 'Mayor estímulo global. Ideal si controlas el movimiento.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/hCDzSR6bW10/hqdefault.jpg',
             note: 'Más fácil de colocar. Buena opción cuando el peso sube.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/JCXUYuzwNrM/hqdefault.jpg',
             note: 'Más estabilidad. Válido para empezar a cargar.',
           },
         ],
@@ -63,12 +64,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta agarre ancho',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/CAwf7n6Luuc/hqdefault.jpg',
             note: 'Clásico y efectivo. Lleva la barra al pecho.',
           },
           {
             label: 'Polea alta agarre neutro',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/CAwf7n6Luuc/hqdefault.jpg',
             note: 'Menos tensión en el hombro. Buena alternativa.',
           },
         ],
@@ -82,17 +83,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina convergente',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/xUm0BiZCX_I/hqdefault.jpg',
             note: 'Ideal para aislar más el pecho. Muy segura.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/gRVjAtPip0Y/hqdefault.jpg',
             note: 'Progresión limpia y controlada.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/VmB1G1K7v94/hqdefault.jpg',
             note: 'Mayor rango de movimiento. Requiere más estabilidad.',
           },
         ],
@@ -106,12 +107,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/3VcKaXpzqRo/hqdefault.jpg',
             note: 'La opción clásica. Control total en cada rep.',
           },
           {
             label: 'Máquina de hombro lateral',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/3VcKaXpzqRo/hqdefault.jpg',
             note: 'Muy buena si existe. Tensión constante en el deltoides.',
           },
         ],
@@ -132,17 +133,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/SEdqd9DgNho/hqdefault.jpg',
             note: 'La opción más cargable. Usa pad para la cadera.',
           },
           {
             label: 'Máquina específica de hip thrust',
-            imageUrl: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/SEdqd9DgNho/hqdefault.jpg',
             note: 'La mejor opción si existe. Tensión perfecta en glúteo.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/SEdqd9DgNho/hqdefault.jpg',
             note: 'Buena alternativa segura.',
           },
         ],
@@ -156,12 +157,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Remo sentado en polea',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/GZbfZ033f74/hqdefault.jpg',
             note: 'El clásico. Agarre neutro o ancho.',
           },
           {
             label: 'Remo en máquina con pecho apoyado',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/xQNrFHEMhI4/hqdefault.jpg',
             note: 'Muy buena opción. Elimina el balanceo completamente.',
           },
         ],
@@ -175,12 +176,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/2C-uNgKwPLE/hqdefault.jpg',
             note: 'La opción estándar. Flexibilidad de agarre.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/2C-uNgKwPLE/hqdefault.jpg',
             note: 'Más estabilidad lateral. Buena para cargar más.',
           },
         ],
@@ -194,12 +195,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Curl femoral tumbado',
-            imageUrl: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/1Tq3QdYUuHs/hqdefault.jpg',
             note: 'Mayor rango de movimiento.',
           },
           {
             label: 'Curl femoral sentado',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/ELOCsoDSmrg/hqdefault.jpg',
             note: 'Tensión en posición de estiramiento. Muy efectivo.',
           },
         ],
@@ -213,7 +214,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta con cuerda',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/rep-qVOkqgk/hqdefault.jpg',
             note: 'La única opción correcta. Tira hacia la cara, codos altos.',
           },
         ],
@@ -234,17 +235,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/op9kVnSso6Q/hqdefault.jpg',
             note: 'El original. Máximo estímulo de cadena posterior.',
           },
           {
             label: 'Trap bar',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/lZRIprPIxlE/hqdefault.jpg',
             note: 'Mejor para ti si la hay. Más segura y cómoda.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/op9kVnSso6Q/hqdefault.jpg',
             note: 'Si quieres estabilidad. Válido para aprender.',
           },
         ],
@@ -258,7 +259,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/IZxyjW7MPJQ/hqdefault.jpg',
             note: 'Footprint alto para más cuádriceps, bajo para más glúteo.',
           },
         ],
@@ -272,17 +273,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina de hombro',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/qEwKCR5JCog/hqdefault.jpg',
             note: 'La más segura y progresiva.',
           },
           {
             label: 'Multipower',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/2yjwXTZQDDI/hqdefault.jpg',
             note: 'Buena opción. Controla que no arquees la espalda.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/qEwKCR5JCog/hqdefault.jpg',
             note: 'Mayor inestabilidad. Útil para identificar desequilibrios.',
           },
         ],
@@ -296,17 +297,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea baja unilateral',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/GZbfZ033f74/hqdefault.jpg',
             note: 'Muy buena. Rango completo de movimiento.',
           },
           {
             label: 'Máquina unilateral',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/GZbfZ033f74/hqdefault.jpg',
             note: 'Si existe, cómoda y progresiva.',
           },
           {
             label: 'Mancuerna apoyada en banco',
-            imageUrl: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/pYcpY20QaE8/hqdefault.jpg',
             note: 'La clásica. Siempre disponible.',
           },
         ],
@@ -320,32 +321,32 @@ export const ROUTINES = {
         options: [
           {
             label: 'Gemelo — Máquina de pie',
-            imageUrl: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/gwLzBJYoWlI/hqdefault.jpg',
             note: 'Mayor carga. Rodilla extendida activa más gastrocnemio.',
           },
           {
             label: 'Gemelo — Máquina sentado',
-            imageUrl: 'https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/JbyjNymZOt0/hqdefault.jpg',
             note: 'Rodilla flexionada activa más sóleo.',
           },
           {
             label: 'Gemelo — En prensa',
-            imageUrl: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/gwLzBJYoWlI/hqdefault.jpg',
             note: 'Válido si no hay máquina específica.',
           },
           {
             label: 'Core — Pallof press en polea',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/AH_QZLm_0-s/hqdefault.jpg',
             note: 'Antirotación. El mejor core para el gym.',
           },
           {
             label: 'Core — Crunch en polea',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/Xyd_fa5zoEU/hqdefault.jpg',
             note: 'Con carga. Mucho mejor que crunch en suelo.',
           },
           {
             label: 'Core — Plancha con peso',
-            imageUrl: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+            imageUrl: 'https://i.ytimg.com/vi/B296mZDhrP4/hqdefault.jpg',
             note: 'Disco en la espalda. 30–45 segundos.',
           },
         ],
@@ -354,5 +355,4 @@ export const ROUTINES = {
   },
 }
 
-// Orden de rotación de rutinas
 export const ROUTINE_ORDER = ['A', 'B', 'C']
