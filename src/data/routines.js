@@ -16,6 +16,9 @@
 //   ]
 // }
 
+// URLs de imágenes: wger.de (licencia CC-BY-SA, libre para uso personal)
+// Si prefieres tus propias fotos, cambia imageUrl por una URL directa a cualquier imagen
+
 export const ROUTINES = {
   A: {
     name: 'DÍA A',
@@ -30,17 +33,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
             note: 'La opción más segura. Controla la bajada.',
           },
           {
             label: 'Sentadilla en multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/8/Squats-1.png',
             note: 'Buena para progresión limpia sin necesitar spotter.',
           },
           {
             label: 'Hack squat',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/220/Hack-squat-1.png',
             note: 'Muy buena opción si la hay. Excelente para cuádriceps.',
           },
         ],
@@ -54,17 +57,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra libre',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/96/Romanian-deadlift-1.png',
             note: 'Mayor estímulo global. Ideal si controlas el movimiento.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/243/Dumbbell-Romanian-Deadlift-1.png',
             note: 'Más fácil de colocar. Buena opción cuando el peso sube.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/96/Romanian-deadlift-1.png',
             note: 'Más estabilidad. Válido para empezar a cargar.',
           },
         ],
@@ -78,12 +81,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta agarre ancho',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/59/Lat-pulldown-1.png',
             note: 'Clásico y efectivo. Lleva la barra al pecho.',
           },
           {
             label: 'Polea alta agarre neutro',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/59/Lat-pulldown-1.png',
             note: 'Menos tensión en el hombro. Buena alternativa.',
           },
         ],
@@ -97,17 +100,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina convergente',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/165/Machine-chest-press-1.png',
             note: 'Ideal para aislar más el pecho. Muy segura.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/15/Bench-press-1.png',
             note: 'Progresión limpia y controlada.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/87/Dumbbell-bench-press-1.png',
             note: 'Mayor rango de movimiento. Requiere más estabilidad.',
           },
         ],
@@ -121,12 +124,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/32/Dumbbell-lateral-raise-1.png',
             note: 'La opción clásica. Control total en cada rep.',
           },
           {
             label: 'Máquina de hombro lateral',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/32/Dumbbell-lateral-raise-1.png',
             note: 'Muy buena si existe. Tensión constante en el deltoides.',
           },
         ],
@@ -147,17 +150,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
             note: 'La opción más cargable. Usa pad para la cadera.',
           },
           {
             label: 'Máquina específica de hip thrust',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
             note: 'La mejor opción si existe. Tensión perfecta en glúteo.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/218/Barbell-hip-thrust-1.png',
             note: 'Buena alternativa segura.',
           },
         ],
@@ -171,12 +174,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Remo sentado en polea',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/61/Seated-cable-row-1.png',
             note: 'El clásico. Agarre neutro o ancho.',
           },
           {
             label: 'Remo en máquina con pecho apoyado',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/170/Machine-row-1.png',
             note: 'Muy buena opción. Elimina el balanceo completamente.',
           },
         ],
@@ -190,12 +193,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Mancuernas',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/222/Bulgarian-split-squat-1.png',
             note: 'La opción estándar. Flexibilidad de agarre.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/222/Bulgarian-split-squat-1.png',
             note: 'Más estabilidad lateral. Buena para cargar más.',
           },
         ],
@@ -209,12 +212,12 @@ export const ROUTINES = {
         options: [
           {
             label: 'Curl femoral tumbado',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/219/Lying-leg-curl-1.png',
             note: 'Mayor rango de movimiento.',
           },
           {
             label: 'Curl femoral sentado',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/217/Seated-leg-curl-1.png',
             note: 'Tensión en posición de estiramiento. Muy efectivo.',
           },
         ],
@@ -228,7 +231,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea alta con cuerda',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/232/Face-pull-1.png',
             note: 'La única opción correcta. Tira hacia la cara, codos altos.',
           },
         ],
@@ -249,17 +252,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Barra',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
             note: 'El original. Máximo estímulo de cadena posterior.',
           },
           {
             label: 'Trap bar',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
             note: 'Mejor para ti si la hay. Más segura y cómoda.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/29/Deadlift-1.png',
             note: 'Si quieres estabilidad. Válido para aprender.',
           },
         ],
@@ -273,7 +276,7 @@ export const ROUTINES = {
         options: [
           {
             label: 'Prensa inclinada 45º',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
             note: 'Footprint alto para más cuádriceps, bajo para más glúteo.',
           },
         ],
@@ -287,17 +290,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Máquina de hombro',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/166/Machine-shoulder-press-1.png',
             note: 'La más segura y progresiva.',
           },
           {
             label: 'Multipower',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/9/Overhead-press-1.png',
             note: 'Buena opción. Controla que no arquees la espalda.',
           },
           {
             label: 'Mancuernas',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/30/Dumbbell-shoulder-press-1.png',
             note: 'Mayor inestabilidad. Útil para identificar desequilibrios.',
           },
         ],
@@ -311,17 +314,17 @@ export const ROUTINES = {
         options: [
           {
             label: 'Polea baja unilateral',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/61/Seated-cable-row-1.png',
             note: 'Muy buena. Rango completo de movimiento.',
           },
           {
             label: 'Máquina unilateral',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/170/Machine-row-1.png',
             note: 'Si existe, cómoda y progresiva.',
           },
           {
             label: 'Mancuerna apoyada en banco',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/62/Dumbbell-row-1.png',
             note: 'La clásica. Siempre disponible.',
           },
         ],
@@ -335,32 +338,32 @@ export const ROUTINES = {
         options: [
           {
             label: 'Gemelo — Máquina de pie',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/75/Standing-calf-raise-1.png',
             note: 'Mayor carga. Rodilla extendida activa más gastrocnemio.',
           },
           {
             label: 'Gemelo — Máquina sentado',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/75/Standing-calf-raise-1.png',
             note: 'Rodilla flexionada activa más sóleo.',
           },
           {
             label: 'Gemelo — En prensa',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/216/Leg-press-1.png',
             note: 'Válido si no hay máquina específica.',
           },
           {
             label: 'Core — Pallof press en polea',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/168/Pallof-press-1.png',
             note: 'Antirotación. El mejor core para el gym.',
           },
           {
             label: 'Core — Crunch en polea',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/91/Crunches-1.png',
             note: 'Con carga. Mucho mejor que crunch en suelo.',
           },
           {
             label: 'Core — Plancha con peso',
-            imageUrl: null,
+            imageUrl: 'https://wger.de/media/exercise-images/135/Plank-1.png',
             note: 'Disco en la espalda. 30–45 segundos.',
           },
         ],
