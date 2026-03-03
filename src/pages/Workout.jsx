@@ -16,7 +16,6 @@ export default function Workout() {
 
   const completeSession = useGymStore(s => s.completeSession)
   const routine = ROUTINES[routineKey]
-
   if (!routine) return <div>Rutina no encontrada</div>
 
   const exercises = routine.exercises
@@ -24,10 +23,7 @@ export default function Workout() {
   const isFirst = currentIndex === 0
 
   const goNext = () => {
-    if (isLast) {
-      setShowFinish(true)
-      return
-    }
+    if (isLast) { setShowFinish(true); return }
     setDirection(1)
     setCurrentIndex(i => i + 1)
   }
@@ -67,36 +63,23 @@ export default function Workout() {
             border: '1px solid var(--border)',
             color: 'var(--text)',
             borderRadius: 10,
-            width: 36,
-            height: 36,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            width: 36, height: 36,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer',
           }}
         >
           <ArrowLeft size={18} />
         </button>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{
-            fontSize: 11,
-            fontFamily: 'var(--font-mono)',
-            color: 'var(--text-muted)',
-            letterSpacing: '0.1em',
-          }}>
+          <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
             RUTINA
           </div>
-          <div style={{
-            fontSize: 18,
-            fontWeight: 800,
-            color: routine.color,
-            letterSpacing: '-0.02em',
-          }}>
+          <div style={{ fontSize: 18, fontWeight: 800, color: routine.color, letterSpacing: '-0.02em' }}>
             DÍA {routineKey}
           </div>
         </div>
 
-        {/* Finish button si estamos en el último */}
         {isLast ? (
           <button
             onClick={() => setShowFinish(true)}
@@ -111,6 +94,7 @@ export default function Workout() {
               display: 'flex',
               alignItems: 'center',
               gap: 4,
+              cursor: 'pointer',
             }}
           >
             <CheckCircle2 size={14} />
@@ -121,8 +105,12 @@ export default function Workout() {
         )}
       </div>
 
-      {/* Exercise card with AnimatePresence for swipe feel */}
-      <div style={{ flex: 1, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      {/* Exercise area — posición relativa para que las cards se posicionen absolute dentro */}
+      <div style={{
+        flex: 1,
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <ExerciseCard
             key={exercises[currentIndex].id}
@@ -130,8 +118,7 @@ export default function Workout() {
             index={currentIndex}
             total={exercises.length}
             accentColor={routine.color}
-            onNext={goNext}
-            onPrev={goPrev}
+            direction={direction}
           />
         </AnimatePresence>
       </div>
@@ -152,7 +139,7 @@ export default function Workout() {
             flex: 1,
             padding: '14px',
             borderRadius: 12,
-            background: isFirst ? 'var(--surface2)' : 'var(--surface2)',
+            background: 'var(--surface2)',
             border: '1px solid var(--border)',
             color: isFirst ? 'var(--text-muted)' : 'var(--text)',
             display: 'flex',
@@ -162,6 +149,7 @@ export default function Workout() {
             fontSize: 14,
             fontWeight: 600,
             opacity: isFirst ? 0.3 : 1,
+            cursor: isFirst ? 'default' : 'pointer',
           }}
         >
           <ChevronLeft size={18} />
@@ -173,7 +161,7 @@ export default function Workout() {
             flex: 2,
             padding: '14px',
             borderRadius: 12,
-            background: isLast ? routine.color : routine.color,
+            background: routine.color,
             border: 'none',
             color: '#000',
             display: 'flex',
@@ -182,18 +170,13 @@ export default function Workout() {
             gap: 6,
             fontSize: 14,
             fontWeight: 700,
+            cursor: 'pointer',
           }}
         >
           {isLast ? (
-            <>
-              <CheckCircle2 size={18} />
-              Finalizar rutina
-            </>
+            <><CheckCircle2 size={18} />Finalizar rutina</>
           ) : (
-            <>
-              Siguiente
-              <ChevronRight size={18} />
-            </>
+            <>Siguiente<ChevronRight size={18} /></>
           )}
         </button>
       </div>
@@ -206,14 +189,11 @@ export default function Workout() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
-              position: 'fixed',
-              inset: 0,
+              position: 'fixed', inset: 0,
               background: 'rgba(240,240,235,0.97)',
               zIndex: 200,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center',
               padding: 32,
             }}
           >
@@ -224,12 +204,9 @@ export default function Workout() {
               style={{ textAlign: 'center' }}
             >
               <div style={{
-                fontSize: 80,
-                fontWeight: 800,
-                color: routine.color,
-                lineHeight: 1,
-                letterSpacing: '-0.05em',
-                marginBottom: 16,
+                fontSize: 80, fontWeight: 800,
+                color: routine.color, lineHeight: 1,
+                letterSpacing: '-0.05em', marginBottom: 16,
               }}>
                 DÍA {routineKey}
               </div>
@@ -239,18 +216,13 @@ export default function Workout() {
               <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 13, marginBottom: 40 }}>
                 {exercises.length} ejercicios · {new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
               </p>
-
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
                 <button
                   onClick={handleFinish}
                   style={{
-                    padding: '16px',
-                    borderRadius: 14,
-                    background: routine.color,
-                    color: '#000',
-                    fontSize: 16,
-                    fontWeight: 700,
-                    width: '100%',
+                    padding: '16px', borderRadius: 14,
+                    background: routine.color, color: '#000',
+                    fontSize: 16, fontWeight: 700, width: '100%', cursor: 'pointer',
                   }}
                 >
                   Guardar y volver
@@ -258,13 +230,9 @@ export default function Workout() {
                 <button
                   onClick={() => setShowFinish(false)}
                   style={{
-                    padding: '14px',
-                    borderRadius: 14,
-                    background: 'var(--surface)',
-                    border: '1px solid var(--border)',
-                    color: 'var(--text)',
-                    fontSize: 14,
-                    fontWeight: 500,
+                    padding: '14px', borderRadius: 14,
+                    background: 'var(--surface)', border: '1px solid var(--border)',
+                    color: 'var(--text)', fontSize: 14, fontWeight: 500, cursor: 'pointer',
                   }}
                 >
                   Seguir revisando
