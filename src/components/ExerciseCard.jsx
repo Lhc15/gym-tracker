@@ -1,38 +1,34 @@
 // src/components/ExerciseCard.jsx
+// Sin drag/swipe — navegación solo por botones
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import OptionModal from './OptionModal'
 import WorkoutLog from './WorkoutLog'
 
-export default function ExerciseCard({ exercise, index, total, accentColor, dragConstraints, onNext, onPrev }) {
+export default function ExerciseCard({ exercise, index, total, accentColor, direction }) {
   const [selectedOption, setSelectedOption] = useState(null)
 
   return (
     <>
       <motion.div
         key={exercise.id}
-        initial={{ opacity: 0, x: 80 }}
+        custom={direction}
+        initial={{ opacity: 0, x: direction * 60 }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -80 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.3}
-        onDragEnd={(e, info) => {
-          if (info.offset.x < -60) onNext()
-          if (info.offset.x > 60) onPrev()
-        }}
+        exit={{ opacity: 0, x: direction * -60 }}
+        transition={{ type: 'spring', damping: 28, stiffness: 300 }}
         style={{
-          flex: 1,
-          overflow: 'hidden auto',
+          position: 'absolute',
+          inset: 0,
+          overflowY: 'auto',
+          overflowX: 'hidden',
           padding: '20px 20px 0',
-          userSelect: 'none',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
-        {/* Header del ejercicio */}
+        {/* Header */}
         <div style={{ marginBottom: 20 }}>
-          {/* Número y total */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <span style={{
               fontFamily: 'var(--font-mono)',
@@ -42,8 +38,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
             }}>
               EJERCICIO {index + 1} / {total}
             </span>
-
-            {/* Indicadores de progreso */}
             <div style={{ display: 'flex', gap: 4 }}>
               {Array.from({ length: total }).map((_, i) => (
                 <div key={i} style={{
@@ -57,7 +51,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
             </div>
           </div>
 
-          {/* Nombre */}
           <h2 style={{
             fontSize: 28,
             fontWeight: 800,
@@ -68,7 +61,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
             {exercise.name}
           </h2>
 
-          {/* Series × reps badge */}
           <div style={{
             display: 'inline-block',
             marginTop: 10,
@@ -84,7 +76,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
           </div>
         </div>
 
-        {/* Nota general */}
         {exercise.notes && (
           <div style={{
             padding: '12px 14px',
@@ -99,7 +90,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
           </div>
         )}
 
-        {/* Opciones */}
         <div style={{ marginBottom: 20 }}>
           <p style={{
             fontSize: 11,
@@ -128,6 +118,7 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
                   fontSize: 14,
                   fontWeight: 500,
                   textAlign: 'left',
+                  cursor: 'pointer',
                 }}
               >
                 <span>{opt.label}</span>
@@ -137,7 +128,6 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
           </div>
         </div>
 
-        {/* Log de pesos */}
         <WorkoutLog
           exerciseId={exercise.id}
           sets={exercise.sets}
@@ -145,11 +135,9 @@ export default function ExerciseCard({ exercise, index, total, accentColor, drag
           accentColor={accentColor}
         />
 
-        {/* Spacer para que el último elemento no quede cortado */}
         <div style={{ height: 120 }} />
       </motion.div>
 
-      {/* Modal de opción */}
       {selectedOption && (
         <OptionModal option={selectedOption} onClose={() => setSelectedOption(null)} />
       )}
