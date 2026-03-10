@@ -1,16 +1,17 @@
 // src/store/useGymStore.js
+// Sin device_id dinámico — usa un USER_CODE fijo elegido por el usuario
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 import { supabase } from '../lib/supabase.js'
 import { ROUTINE_ORDER } from '../data/routines'
 
-function getDeviceId() {
-  let id = localStorage.getItem('gym-device-id')
-  if (!id) {
-    id = crypto.randomUUID()
-    localStorage.setItem('gym-device-id', id)
-  }
-  return id
+const USER_CODE_KEY = 'gym-user-code'
+
+export function getUserCode() {
+  return localStorage.getItem(USER_CODE_KEY)
+}
+
+export function setUserCode(code) {
+  localStorage.setItem(USER_CODE_KEY, code.toLowerCase().trim())
 }
 
 function getNextRoutine(sessions) {
@@ -18,32 +19,6 @@ function getNextRoutine(sessions) {
   const last = sessions[sessions.length - 1]
   const lastIdx = ROUTINE_ORDER.indexOf(last.day)
   return ROUTINE_ORDER[(lastIdx + 1) % ROUTINE_ORDER.length]
-}
-
-// La semana se calcula siempre desde la fecha de la PRIMERA sesión real
-// independientemente de lo que diga programStartDate en local
-function getCurrentWeek(programStartDate) {
-  if (!programStartDate) return 1
-  const start = new Date(programStartDate)
-  const now = new Date()
-  const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24))
-  return Math.min(Math.floor(diffDays / 7) + 1, 10)
-}
-
-// Las semanas de cada sesión se recalculan desde la fecha real,
-// ignorando el campo week guardado en BD (que puede estar mal)
-function recalculateSessions(sessions, programStartDate) {
-  return sessions.map(s => ({
-    ...s,
-    week: getCurrentWeek(programStartDate) === 1
-      ? 1
-      : (() => {
-          const start = new Date(programStartDate)
-          const sessionDate = new Date(s.date)
-          const diffDays = Math.floor((sessionDate - start) / (1000 * 60 * 60 * 24))
-          return Math.min(Math.floor(diffDays / 7) + 1, 10)
-        })()
-  }))
 }
 
 function computeWeekStatuses(sessions) {
@@ -56,168 +31,139 @@ function computeWeekStatuses(sessions) {
   return statuses
 }
 
-async function syncToSupabase(table, data) {
-  try {
-    await supabase.from(table).insert(data)
-  } catch (err) {
-    console.warn(`Supabase ${table} sync failed:`, err)
-  }
+function getCurrentWeek(programStartDate) {
+  if (!programStartDate) return 1
+  const start = new Date(programStartDate)
+  const now = new Date()
+  const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24))
+  return Math.min(Math.floor(diffDays / 7) + 1, 10)
 }
 
-const useGymStore = create(
-  persist(
-    (set, get) => ({
-      sessions: [],
-      programStartDate: null,
-      workoutLogs: {},
+const useGymStore = create((set, get) => ({
+  sessions: [],
+  programStartDate: null,
+  workoutLogs: {},
+  loading: true,
 
-      getNextRoutine: () => getNextRoutine(get().sessions),
-      getCurrentWeek: () => getCurrentWeek(get().programStartDate),
-      getWeekStatuses: () => computeWeekStatuses(get().sessions),
-      getLastSessionDate: (routineKey) => {
-        const s = get().sessions.filter(s => s.day === routineKey)
-        return s.length ? s[s.length - 1].date : null
-      },
-      getSuggestedWeight: (exerciseId) => {
-        const logs = get().workoutLogs[exerciseId] || []
-        return logs.length ? logs[logs.length - 1].weight : null
-      },
-      getExerciseLogs: (exerciseId) => get().workoutLogs[exerciseId] || [],
+  getNextRoutine: () => getNextRoutine(get().sessions),
+  getCurrentWeek: () => getCurrentWeek(get().programStartDate),
+  getWeekStatuses: () => computeWeekStatuses(get().sessions),
+  getLastSessionDate: (routineKey) => {
+    const s = get().sessions.filter(s => s.day === routineKey)
+    return s.length ? s[s.length - 1].date : null
+  },
+  getSuggestedWeight: (exerciseId) => {
+    const logs = get().workoutLogs[exerciseId] || []
+    return logs.length ? logs[logs.length - 1].weight : null
+  },
+  getExerciseLogs: (exerciseId) => get().workoutLogs[exerciseId] || [],
 
-      loadFromSupabase: async () => {
-        const deviceId = getDeviceId()
-        const state = get()
+  // Carga todos los datos desde Supabase usando el user code
+  loadData: async () => {
+    const code = getUserCode()
+    if (!code) { set({ loading: false }); return }
 
-        try {
-          const { data: sessionData, error: sErr } = await supabase
-            .from('sessions')
-            .select('*')
-            .eq('device_id', deviceId)
-            .order('created_at', { ascending: true })
+    set({ loading: true })
+    try {
+      const { data: sessionData } = await supabase
+        .from('sessions')
+        .select('*')
+        .eq('device_id', code)
+        .order('created_at', { ascending: true })
 
-          if (sErr) throw sErr
+      const { data: logData } = await supabase
+        .from('workout_logs')
+        .select('*')
+        .eq('device_id', code)
+        .order('created_at', { ascending: true })
 
-          const { data: logData } = await supabase
-            .from('workout_logs')
-            .select('*')
-            .eq('device_id', deviceId)
-            .order('created_at', { ascending: true })
+      if (sessionData && sessionData.length > 0) {
+        const programStartDate = sessionData[0].created_at
 
-          if (sessionData && sessionData.length > 0) {
-            // La fecha de inicio real es la primera sesión en Supabase
-            const programStartDate = sessionData[0].created_at
+        // Recalcular semanas desde la fecha real de inicio
+        const sessions = sessionData.map(s => {
+          const start = new Date(programStartDate)
+          const sessionDate = new Date(s.created_at)
+          const diffDays = Math.floor((sessionDate - start) / (1000 * 60 * 60 * 24))
+          const week = Math.min(Math.floor(diffDays / 7) + 1, 10)
+          return { week, day: s.day, date: s.created_at }
+        })
 
-            // Recalcular la semana de cada sesión desde la fecha real
-            const sessions = sessionData.map(s => {
-              const start = new Date(programStartDate)
-              const sessionDate = new Date(s.created_at)
-              const diffDays = Math.floor((sessionDate - start) / (1000 * 60 * 60 * 24))
-              const week = Math.min(Math.floor(diffDays / 7) + 1, 10)
-              return { week, day: s.day, date: s.created_at }
+        const workoutLogs = {}
+        if (logData) {
+          for (const log of logData) {
+            if (!workoutLogs[log.exercise_id]) workoutLogs[log.exercise_id] = []
+            workoutLogs[log.exercise_id].push({
+              date: log.created_at,
+              weight: log.weight,
+              rpe: log.rpe,
+              reps: log.reps,
+              notes: log.notes,
             })
-
-            const workoutLogs = {}
-            if (logData) {
-              for (const log of logData) {
-                if (!workoutLogs[log.exercise_id]) workoutLogs[log.exercise_id] = []
-                workoutLogs[log.exercise_id].push({
-                  date: log.created_at,
-                  weight: log.weight,
-                  rpe: log.rpe,
-                  reps: log.reps,
-                  notes: log.notes,
-                })
-              }
-            }
-
-            set({ sessions, workoutLogs, programStartDate })
-            console.log(`Cargadas ${sessions.length} sesiones. Inicio: ${programStartDate}. Semana actual: ${getCurrentWeek(programStartDate)}`)
-
-          } else if (state.sessions.length > 0) {
-            // Supabase vacío → migrar datos locales
-            console.log('Migrando datos locales a Supabase...')
-            const sessionRows = state.sessions.map(s => ({
-              device_id: deviceId,
-              week: s.week,
-              day: s.day,
-              created_at: s.date,
-            }))
-            await supabase.from('sessions').insert(sessionRows)
-
-            const logRows = []
-            for (const [exerciseId, logs] of Object.entries(state.workoutLogs)) {
-              for (const log of logs) {
-                logRows.push({
-                  device_id: deviceId,
-                  exercise_id: exerciseId,
-                  weight: log.weight,
-                  rpe: log.rpe,
-                  reps: log.reps,
-                  notes: log.notes || '',
-                  created_at: log.date,
-                })
-              }
-            }
-            if (logRows.length > 0) {
-              await supabase.from('workout_logs').insert(logRows)
-            }
-            console.log('Migración completada')
           }
-
-        } catch (err) {
-          console.warn('Supabase no disponible, usando datos locales:', err)
         }
-      },
 
-      completeSession: async (routineKey) => {
-        const state = get()
-        const deviceId = getDeviceId()
+        set({ sessions, workoutLogs, programStartDate, loading: false })
+      } else {
+        set({ sessions: [], workoutLogs: {}, programStartDate: null, loading: false })
+      }
+    } catch (err) {
+      console.warn('Error cargando datos:', err)
+      set({ loading: false })
+    }
+  },
 
-        const startDate = state.programStartDate || new Date().toISOString()
-        const currentWeek = getCurrentWeek(startDate)
-        const newSession = { week: currentWeek, day: routineKey, date: new Date().toISOString() }
+  completeSession: async (routineKey) => {
+    const code = getUserCode()
+    const state = get()
+    const startDate = state.programStartDate || new Date().toISOString()
+    const currentWeek = getCurrentWeek(startDate)
+    const newSession = { week: currentWeek, day: routineKey, date: new Date().toISOString() }
 
-        set({
-          programStartDate: startDate,
-          sessions: [...state.sessions, newSession],
-        })
+    set({
+      programStartDate: startDate,
+      sessions: [...state.sessions, newSession],
+    })
 
-        syncToSupabase('sessions', {
-          device_id: deviceId,
-          week: currentWeek,
-          day: routineKey,
-        })
-      },
+    try {
+      await supabase.from('sessions').insert({
+        device_id: code,
+        week: currentWeek,
+        day: routineKey,
+      })
+    } catch (err) {
+      console.warn('Error guardando sesión:', err)
+    }
+  },
 
-      logExerciseSet: async (exerciseId, logEntry) => {
-        const deviceId = getDeviceId()
-        const logs = get().workoutLogs
-        const existing = logs[exerciseId] || []
-        const entry = { ...logEntry, date: new Date().toISOString() }
+  logExerciseSet: async (exerciseId, logEntry) => {
+    const code = getUserCode()
+    const logs = get().workoutLogs
+    const existing = logs[exerciseId] || []
+    set({ workoutLogs: { ...logs, [exerciseId]: [...existing, { ...logEntry, date: new Date().toISOString() }] } })
 
-        set({ workoutLogs: { ...logs, [exerciseId]: [...existing, entry] } })
+    try {
+      await supabase.from('workout_logs').insert({
+        device_id: code,
+        exercise_id: exerciseId,
+        weight: logEntry.weight,
+        rpe: logEntry.rpe,
+        reps: logEntry.reps,
+        notes: logEntry.notes || '',
+      })
+    } catch (err) {
+      console.warn('Error guardando log:', err)
+    }
+  },
 
-        syncToSupabase('workout_logs', {
-          device_id: deviceId,
-          exercise_id: exerciseId,
-          weight: logEntry.weight,
-          rpe: logEntry.rpe,
-          reps: logEntry.reps,
-          notes: logEntry.notes || '',
-        })
-      },
-
-      resetProgram: async () => {
-        const deviceId = getDeviceId()
-        set({ sessions: [], programStartDate: null, workoutLogs: {} })
-        try {
-          await supabase.from('sessions').delete().eq('device_id', deviceId)
-          await supabase.from('workout_logs').delete().eq('device_id', deviceId)
-        } catch (_) {}
-      },
-    }),
-    { name: 'gym-tracker-storage' }
-  )
-)
+  resetProgram: async () => {
+    const code = getUserCode()
+    set({ sessions: [], programStartDate: null, workoutLogs: {} })
+    try {
+      await supabase.from('sessions').delete().eq('device_id', code)
+      await supabase.from('workout_logs').delete().eq('device_id', code)
+    } catch (_) {}
+  },
+}))
 
 export default useGymStore

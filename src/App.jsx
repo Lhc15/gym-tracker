@@ -1,16 +1,22 @@
 // src/App.jsx
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Workout from './pages/Workout'
-import useGymStore from './store/useGymStore'
+import Login from './pages/Login'
+import useGymStore, { getUserCode } from './store/useGymStore'
 
 export default function App() {
-  const loadFromSupabase = useGymStore(s => s.loadFromSupabase)
+  const [hasCode, setHasCode] = useState(!!getUserCode())
+  const loadData = useGymStore(s => s.loadData)
 
   useEffect(() => {
-    loadFromSupabase()
-  }, [])
+    if (hasCode) loadData()
+  }, [hasCode])
+
+  if (!hasCode) {
+    return <Login onLogin={() => { setHasCode(true) }} />
+  }
 
   return (
     <BrowserRouter>
