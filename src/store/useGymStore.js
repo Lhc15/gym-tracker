@@ -30,7 +30,6 @@ function computeWeekStatuses(sessions) {
   return statuses
 }
 
-// CORREGIDO: solo necesita programStartDate, no sessions
 function getCurrentWeek(programStartDate) {
   if (!programStartDate) return 1
   const start = new Date(programStartDate)
@@ -43,7 +42,7 @@ async function syncToSupabase(table, data) {
   try {
     await supabase.from(table).insert(data)
   } catch (err) {
-    console.warn(`Supabase ${table} sync failed (datos guardados en local):`, err)
+    console.warn(`Supabase ${table} sync failed:`, err)
   }
 }
 
@@ -67,16 +66,99 @@ const useGymStore = create(
       },
       getExerciseLogs: (exerciseId) => get().workoutLogs[exerciseId] || [],
 
+      // Carga datos desde Supabase con el device_id del móvil
+      // Si Supabase tiene más datos que local → usa Supabase
+      // Si local tiene datos y Supabase está vacío → migra a Supabase
+      loadFromSupabase: async () => {
+        const deviceId = getDeviceId()
+        const state = get()
+
+        try {
+          const { data: sessionData, error: sErr } = await supabase
+            .from('sessions')
+            .select('*')
+            .eq('device_id', deviceId)
+            .order('created_at', { ascending: true })
+
+          if (sErr) throw sErr
+
+          const { data: logData } = await supabase
+            .from('workout_logs')
+            .select('*')
+            .eq('device_id', deviceId)
+            .order('created_at', { ascending: true })
+
+          if (sessionData && sessionData.length > 0) {
+            // Supabase tiene datos → cargarlos
+            const sessions = sessionData.map(s => ({
+              week: s.week,
+              day: s.day,
+              date: s.created_at,
+            }))
+
+            const workoutLogs = {}
+            if (logData) {
+              for (const log of logData) {
+                if (!workoutLogs[log.exercise_id]) workoutLogs[log.exercise_id] = []
+                workoutLogs[log.exercise_id].push({
+                  date: log.created_at,
+                  weight: log.weight,
+                  rpe: log.rpe,
+                  reps: log.reps,
+                  notes: log.notes,
+                })
+              }
+            }
+
+            const programStartDate = sessions[0].date
+            set({ sessions, workoutLogs, programStartDate })
+            console.log(`Cargados ${sessions.length} sesiones desde Supabase`)
+
+          } else if (state.sessions.length > 0) {
+            // Supabase vacío pero hay datos locales → migrar
+            console.log('Migrando datos locales a Supabase...')
+
+            const sessionRows = state.sessions.map(s => ({
+              device_id: deviceId,
+              week: s.week,
+              day: s.day,
+              created_at: s.date,
+            }))
+            await supabase.from('sessions').insert(sessionRows)
+
+            const logRows = []
+            for (const [exerciseId, logs] of Object.entries(state.workoutLogs)) {
+              for (const log of logs) {
+                logRows.push({
+                  device_id: deviceId,
+                  exercise_id: exerciseId,
+                  weight: log.weight,
+                  rpe: log.rpe,
+                  reps: log.reps,
+                  notes: log.notes || '',
+                  created_at: log.date,
+                })
+              }
+            }
+            if (logRows.length > 0) {
+              await supabase.from('workout_logs').insert(logRows)
+            }
+            console.log('Migración completada')
+          }
+
+        } catch (err) {
+          console.warn('Supabase no disponible, usando datos locales:', err)
+        }
+      },
+
       completeSession: async (routineKey) => {
         const state = get()
         const deviceId = getDeviceId()
 
-        // FIX: calcular startDate primero, antes de cualquier set()
         const startDate = state.programStartDate || new Date().toISOString()
         const currentWeek = getCurrentWeek(startDate)
         const newSession = { week: currentWeek, day: routineKey, date: new Date().toISOString() }
 
-        // Guardar todo en un solo set atómico
         set({
           programStartDate: startDate,
           sessions: [...state.sessions, newSession],
