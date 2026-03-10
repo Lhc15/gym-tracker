@@ -20,6 +20,32 @@ function getNextRoutine(sessions) {
   return ROUTINE_ORDER[(lastIdx + 1) % ROUTINE_ORDER.length]
 }
 
+// La semana se calcula siempre desde la fecha de la PRIMERA sesión real
+// independientemente de lo que diga programStartDate en local
+function getCurrentWeek(programStartDate) {
+  if (!programStartDate) return 1
+  const start = new Date(programStartDate)
+  const now = new Date()
+  const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24))
+  return Math.min(Math.floor(diffDays / 7) + 1, 10)
+}
+
+// Las semanas de cada sesión se recalculan desde la fecha real,
+// ignorando el campo week guardado en BD (que puede estar mal)
+function recalculateSessions(sessions, programStartDate) {
+  return sessions.map(s => ({
+    ...s,
+    week: getCurrentWeek(programStartDate) === 1
+      ? 1
+      : (() => {
+          const start = new Date(programStartDate)
+          const sessionDate = new Date(s.date)
+          const diffDays = Math.floor((sessionDate - start) / (1000 * 60 * 60 * 24))
+          return Math.min(Math.floor(diffDays / 7) + 1, 10)
+        })()
+  }))
+}
+
 function computeWeekStatuses(sessions) {
   const statuses = Array(10).fill('pending')
   for (let week = 1; week <= 10; week++) {
@@ -28,14 +54,6 @@ function computeWeekStatuses(sessions) {
     else if (count === 1) statuses[week - 1] = 'red'
   }
   return statuses
-}
-
-function getCurrentWeek(programStartDate) {
-  if (!programStartDate) return 1
-  const start = new Date(programStartDate)
-  const now = new Date()
-  const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24))
-  return Math.min(Math.floor(diffDays / 7) + 1, 10)
 }
 
 async function syncToSupabase(table, data) {
@@ -66,9 +84,6 @@ const useGymStore = create(
       },
       getExerciseLogs: (exerciseId) => get().workoutLogs[exerciseId] || [],
 
-      // Carga datos desde Supabase con el device_id del móvil
-      // Si Supabase tiene más datos que local → usa Supabase
-      // Si local tiene datos y Supabase está vacío → migra a Supabase
       loadFromSupabase: async () => {
         const deviceId = getDeviceId()
         const state = get()
@@ -89,12 +104,17 @@ const useGymStore = create(
             .order('created_at', { ascending: true })
 
           if (sessionData && sessionData.length > 0) {
-            // Supabase tiene datos → cargarlos
-            const sessions = sessionData.map(s => ({
-              week: s.week,
-              day: s.day,
-              date: s.created_at,
-            }))
+            // La fecha de inicio real es la primera sesión en Supabase
+            const programStartDate = sessionData[0].created_at
+
+            // Recalcular la semana de cada sesión desde la fecha real
+            const sessions = sessionData.map(s => {
+              const start = new Date(programStartDate)
+              const sessionDate = new Date(s.created_at)
+              const diffDays = Math.floor((sessionDate - start) / (1000 * 60 * 60 * 24))
+              const week = Math.min(Math.floor(diffDays / 7) + 1, 10)
+              return { week, day: s.day, date: s.created_at }
+            })
 
             const workoutLogs = {}
             if (logData) {
@@ -110,14 +130,12 @@ const useGymStore = create(
               }
             }
 
-            const programStartDate = sessions[0].date
             set({ sessions, workoutLogs, programStartDate })
-            console.log(`Cargados ${sessions.length} sesiones desde Supabase`)
+            console.log(`Cargadas ${sessions.length} sesiones. Inicio: ${programStartDate}. Semana actual: ${getCurrentWeek(programStartDate)}`)
 
           } else if (state.sessions.length > 0) {
-            // Supabase vacío pero hay datos locales → migrar
+            // Supabase vacío → migrar datos locales
             console.log('Migrando datos locales a Supabase...')
-
             const sessionRows = state.sessions.map(s => ({
               device_id: deviceId,
               week: s.week,
