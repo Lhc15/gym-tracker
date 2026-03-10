@@ -152,6 +152,7 @@ export default function Home() {
         {/* Reset button */}
         {programStartDate && (
           <div style={{ marginTop: 40, textAlign: 'center' }}>
+            <SyncButton />
             <ResetButton />
           </div>
         )}
@@ -159,6 +160,31 @@ export default function Home() {
         <div style={{ height: 40 }} />
       </div>
     </div>
+  )
+}
+
+function SyncButton() {
+  const [done, setDone] = useState(false)
+  const handleSync = () => {
+    localStorage.removeItem('gym-tracker-storage')
+    setDone(true)
+    setTimeout(() => window.location.reload(), 800)
+  }
+  return (
+    <button
+      onClick={handleSync}
+      style={{
+        background: 'transparent',
+        color: done ? 'var(--green)' : 'var(--text-muted)',
+        fontSize: 12,
+        fontFamily: 'var(--font-mono)',
+        textDecoration: 'underline',
+        display: 'block',
+        margin: '0 auto 8px',
+      }}
+    >
+      {done ? '✓ Recargando...' : 'Sincronizar desde Supabase'}
+    </button>
   )
 }
 
