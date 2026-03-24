@@ -7,9 +7,9 @@ import useGymStore, { getUserCode, setUserCode } from '../store/useGymStore'
 import { ROUTINES } from '../data/routines'
 
 const ROUTINE_DESCRIPTIONS = {
-  A: 'Prensa · RDL · Jalón · Press · Laterales',
-  B: 'Hip thrust · Remo · Búlgara · Femoral · Face pull',
-  C: 'Peso muerto · Prensa · Militar · Remo uni · Gemelo',
+  A: 'Prensa · Sentadilla · Jalón · Remo · Curl bíceps',
+  B: 'Hip thrust · Patada glúteo · Press militar · Laterales · Press banca',
+  C: 'RDL · Curl femoral · Face pull · Butterfly inv · Tríceps · Core',
 }
 
 export default function Home() {
